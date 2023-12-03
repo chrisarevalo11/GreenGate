@@ -63,7 +63,7 @@ export default function ImageField({
   return (
     <Fragment>
       <label className="label">
-        <span className="label-text text-primary-content whitespace-nowrap">
+        <span className="label-text text-white whitespace-nowrap">
           {isRequired && <span className="text-red-500">* </span>}
           {label}
         </span>
@@ -84,12 +84,12 @@ export default function ImageField({
         })}
       >
         <input id="upload" {...getInputProps()} />
-        <p className="flex items-center text-gray-600">
+        <p className="flex items-center text-gray-400">
           {!file.name && "Drop some files here or click to select files"}
         </p>
       </div>
       {file.name && (
-        <p className="text-center text-primary-content">
+        <p className="text-center text-white">
           📁 {file.name}
           <button
             className="ml-2"

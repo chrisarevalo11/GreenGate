@@ -10,6 +10,7 @@ export type formValuesTypes = {
   maxTickets: number;
   seasonImage: string;
   imageFile: File;
+  beneficiaryAddress: string;
 };
 export default function Create(): ReactNode {
   const [formValues, setFormValues] = useState<formValuesTypes>({
@@ -18,6 +19,7 @@ export default function Create(): ReactNode {
     maxTickets: 0,
     seasonImage: "",
     imageFile: {} as File,
+    beneficiaryAddress: "",
   });
 
   return (

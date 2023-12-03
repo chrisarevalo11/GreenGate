@@ -23,7 +23,7 @@ export default function CreateSeasonForm({
 }: ProjectFormProps): ReactElement {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const toast = useToast();
-  const { seasonName, symbol, maxTickets } = formValues;
+  const { seasonName, symbol, maxTickets, beneficiaryAddress } = formValues;
   const router = useRouter();
   const { contract } = useContract(
     process.env.NEXT_PUBLIC_SEASON_CONTRACT_ADDRESS,
@@ -35,12 +35,13 @@ export default function CreateSeasonForm({
   const createSeason = async (
     name: string,
     symbol: string,
-    maxTickets: number
+    maxTickets: number,
+    beneficiaryAddress: string
   ) => {
-    const addressMarketplace = "0xe79Ae1a503c58dE00c5a7c434F74cEFe4AAbdA57";
+    const addressMarketplace = "0x65243035488b36C68A2841A7602efECC80dDF88b";
 
     const data = await mutateAsync({
-      args: [name, symbol, maxTickets, addressMarketplace],
+      args: [name, symbol, maxTickets, beneficiaryAddress, addressMarketplace],
     });
 
     console.log(data);
@@ -61,6 +62,7 @@ export default function CreateSeasonForm({
   const formik = useFormik({
     initialValues: formValues,
     onSubmit: async () => {
+      setIsLoading(true);
       const img = await uploadImgToIPFS(formValues.imageFile);
 
       console.log(contract);
@@ -71,9 +73,8 @@ export default function CreateSeasonForm({
 
       const metadata = await uploadJsonToIPFS(data);
 
-      setIsLoading(true);
       try {
-        await createSeason(seasonName, symbol, maxTickets);
+        await createSeason(seasonName, symbol, maxTickets, beneficiaryAddress);
         toast({
           title: "Season created",
           description: "Season created successfully",
@@ -104,7 +105,7 @@ export default function CreateSeasonForm({
   });
 
   return (
-    <div className="card w-[95%] md:w-[90%] lg:w-1/2 bg-gray-200 shadow-xl m-2 mb-8">
+    <div className="card w-[95%] md:w-[90%] lg:w-1/2 bg-neutral shadow-2xl m-2 mb-8">
       <form onSubmit={formik.handleSubmit} className="space-y-4">
         <div className="card-body">
           <FormField
@@ -119,7 +120,7 @@ export default function CreateSeasonForm({
             label="Symbol"
             inputName="symbol"
             inputType="text"
-            placeholder=""
+            placeholder="e.g. MPJ"
             isRequired={true}
             handleChange={handleChange}
           />
@@ -127,7 +128,15 @@ export default function CreateSeasonForm({
             label="Maximum tickets"
             inputName="maxTickets"
             inputType="number"
-            placeholder="3"
+            placeholder="e.g. 50"
+            isRequired={true}
+            handleChange={handleChange}
+          />
+          <FormField
+            label="Beneficiary address"
+            inputName="beneficiaryAddress"
+            inputType="text"
+            placeholder="e.g. 0x12A3...1A13"
             isRequired={true}
             handleChange={handleChange}
           />
