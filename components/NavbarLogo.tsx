@@ -10,6 +10,7 @@ export default function NavbarLogo(): React.ReactElement {
         alt="logo"
         width={200}
         height={100}
+        priority
         className="w-[150px] md:w[200px]"
       />
     </Link>

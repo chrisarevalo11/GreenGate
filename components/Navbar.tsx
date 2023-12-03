@@ -13,7 +13,7 @@ export default function Component() {
   };
 
   return (
-    <nav className="navbar bg-neutral lg:min-w-fit lg:w-[60%] lg:max-w-[850px] px-4 lg:rounded-full mx-auto flex justify-between sticky top-0 lg:top-2 z-[100]">
+    <nav className="navbar bg-neutral lg:min-w-fit lg:w-[60%] lg:max-w-[930px] px-4 lg:rounded-full mx-auto flex justify-between lg:top-2 z-[100] shadow-lg">
       <div className="navbar-start hidden lg:flex">
         <NavLinks />
       </div>
