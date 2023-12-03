@@ -20,7 +20,7 @@ export default function FormField({
   return (
     <>
       <label className="label">
-        <span className="label-text text-primary-content whitespace-nowrap">
+        <span className="label-text text-white whitespace-nowrap">
           {isRequired && <span className="text-red-500">* </span>}
           {label}
         </span>
@@ -32,7 +32,7 @@ export default function FormField({
         name={inputName}
         onChange={handleChange}
         required={isRequired}
-        className={`input input-bordered w-full bg-gray-300 text-primary-content`}
+        className={`input input-bordered w-full bg-accent-content text-white`}
       />
     </>
   );
