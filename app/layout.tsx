@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <ThirdwebProviders>
       <html lang="en">
-        <body className={`${inter.className} bg-zinc-100 lg:pt-6 h-full`}>
+        <body className={`${inter.className} bg-[#ECECEC] lg:pt-6 h-full`}>
           <ChakraProvider>
             <LayoutNavbar />
             {children}
