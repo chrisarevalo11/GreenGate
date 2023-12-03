@@ -12,7 +12,7 @@ export default function SeasonCardExplore({
   const { seasonName, symbol, maxTickets, seasonImage } = seasonMetadata;
 
   return (
-    <div className="card card-compact w-[300px] bg-neutral shadow-xl overflow-hidden min-h-[230px] flex flex-col items-center lg:sticky lg:top-3 grow">
+    <div className="card card-compact w-[300px] bg-neutral shadow-xl overflow-hidden min-h-[230px] flex flex-col items-center grow">
       <figure
         className="w-full min-h-[140px] text-neutral"
         style={{
