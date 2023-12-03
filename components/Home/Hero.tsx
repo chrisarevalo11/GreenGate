@@ -22,8 +22,8 @@ export default function Hero(): ReactNode {
         </h1>
         <h2 className="text-neutral text-xl lg:text-3xl text-center max-w-lg lg:max-w-2xl">
           Join the Green Revolution with NFTs that unlock access to{" "}
-          <span className="text-primary font-bold">Natural Parks</span> and{" "}
-          <span className="text-primary font-bold">
+          <span className="text-secondary font-bold">Natural Parks</span> and{" "}
+          <span className="text-secondary font-bold">
             Sustainable Development Projects
           </span>
         </h2>
