@@ -7,10 +7,11 @@ import FormField from "./FormField";
 import ImageField from "./ImageField";
 import { uploadImgToIPFS } from "@/utils/uploadImgToIPFS";
 import { uploadJsonToIPFS } from "@/utils/uploadJSONtoIPFS";
-import { useContract, useContractWrite } from "@thirdweb-dev/react";
+import { useAddress, useContract, useContractWrite } from "@thirdweb-dev/react";
 import { createSeasonABI } from "@/utils/CreateSeasonABI";
 import { useToast, Spinner } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
+import { parksMetadata } from "@/utils/ParksMetadata";
 
 type ProjectFormProps = {
   formValues: formValuesTypes;
@@ -30,7 +31,9 @@ export default function CreateSeasonForm({
     createSeasonABI
   );
   const { mutateAsync } = useContractWrite(contract, "createEvent");
-  // console.log(contract);
+
+  const address = useAddress() as string
+  const park = parksMetadata.find((p) => p.ownerAddress === address)
 
   const createSeason = async (
     name: string,
@@ -38,8 +41,8 @@ export default function CreateSeasonForm({
     maxTickets: number,
     beneficiaryAddress: string
   ) => {
-    const addressMarketplace = "0x65243035488b36C68A2841A7602efECC80dDF88b";
-
+    const addressMarketplace = process.env.NEXT_PUBLIC_MARKETPLACE_CONTRACT_ADDRESS;
+    
     const data = await mutateAsync({
       args: [name, symbol, maxTickets, beneficiaryAddress, addressMarketplace],
     });
@@ -72,6 +75,7 @@ export default function CreateSeasonForm({
       };
 
       const metadata = await uploadJsonToIPFS(data);
+      console.log('metadata', metadata)
 
       try {
         await createSeason(seasonName, symbol, maxTickets, beneficiaryAddress);
@@ -87,7 +91,7 @@ export default function CreateSeasonForm({
         setIsLoading(false);
 
         setTimeout(() => {
-          router.push("/explore");
+          router.push(`/explore/${park?.id}`);
         }, 800);
       } catch (error) {
         console.log(error);
