@@ -23,6 +23,7 @@ export const createSeasonABI = [
       { internalType: "string", name: "name", type: "string" },
       { internalType: "string", name: "symbol", type: "string" },
       { internalType: "uint8", name: "maxTickets", type: "uint8" },
+      { internalType: "address", name: "beneficiary", type: "address" },
       { internalType: "address", name: "addressMarkert", type: "address" },
     ],
     name: "createEvent",
