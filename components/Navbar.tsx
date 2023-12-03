@@ -1,9 +1,10 @@
 "use client";
 
-import { ConnectWallet } from "@thirdweb-dev/react";
+import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
 import NavbarLogo from "./NavbarLogo";
-import NavLinks from "./NavLinks";
+import NavLinks, { NavLinksResponsive } from "./NavLinks";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Component() {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
@@ -18,6 +19,21 @@ export default function Component() {
         <NavLinks />
       </div>
       <div className="navbar-center">
+        <div className="flex lg:hidden">
+          <button className="btn btn-ghost" onClick={toggleSidebar}>
+            <Image
+              className=""
+              src={"/images/burger.svg"}
+              alt="bars"
+              width={20}
+              height={20}
+            />
+          </button>
+          <NavLinksResponsive
+            isSidebarOpen={isSidebarOpen}
+            setIsSidebarOpen={setIsSidebarOpen}
+          />
+        </div>
         <NavbarLogo />
       </div>
       <div className="navbar-end">
