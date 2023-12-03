@@ -23,3 +23,7 @@
     scrollbar-width: none;
   }
 }
+
+.btn {
+  @apply text-zinc-100
+}
