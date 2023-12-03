@@ -144,7 +144,7 @@ export default function CreateSeasonForm({
           <button
             type="submit"
             className={`btn btn-primary btn-wide mb-5 ${
-              formValues.seasonImage === "" && "opacity-60 pointer-events-none"
+              !formValues.seasonImage && "opacity-60 pointer-events-none"
             }`}
           >
             {isLoading ? <Spinner /> : "Create Season"}
