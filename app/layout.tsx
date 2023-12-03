@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import LayoutNavbar from "@/components/LayoutNavbar";
 import { ThirdwebProviders } from "@/context/ThirdwebProvider";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <ThirdwebProviders>
       <html lang="en">
-        <body className={`${inter.className} bg-zinc-100 pt-6 h-full`}>
-          <LayoutNavbar />
-          {children}
+        <body className={`${inter.className} bg-zinc-100 lg:pt-6 h-full`}>
+          <ChakraProvider>
+            <LayoutNavbar />
+            {children}
+          </ChakraProvider>
         </body>
       </html>
     </ThirdwebProviders>
